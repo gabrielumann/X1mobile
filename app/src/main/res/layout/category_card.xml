@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#CACACA"
+        android:padding="1dp"
+        tools:ignore="MissingConstraints">
+
+        <!-- Fundo branco -->
+
+        <!-- Icone à esquerda -->
+
+        <View
+            android:layout_width="411dp"
+            android:layout_height="56dp"
+            android:background="#FFFFFF" />
+
+        <ImageView
+            android:id="@+id/ivIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="25dp"
+            android:src="@drawable/baseline_anchor_24" />
+
+        <!-- Texto ao lado do ícone -->
+
+        <!-- Seta à direita -->
+
+        <TextView
+            android:id="@+id/txtCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="55dp"
+            android:text="Lançamento"
+            android:textColor="#333333"
+            android:textSize="19sp" />
+
+        <ImageView
+            android:id="@+id/ivArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="25dp"
+            android:src="@drawable/baseline_arrow_forward_ios_24" />
+
+    </FrameLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
