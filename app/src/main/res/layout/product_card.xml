@@ -37,7 +37,8 @@
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/button_rounded"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:backgroundTint="#9600FF"
         android:text="Comprar"
         android:textColor="#FFFFFF"
         android:textSize="14sp" />

@@ -35,10 +35,9 @@ public class CategoryFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         List<CategoryPOJO> categoryItemList = new ArrayList<>();
-        categoryItemList.add(new CategoryPOJO( "Lançamentos", R.drawable.baseline_anchor_24));
-        categoryItemList.add(new CategoryPOJO("Calçados", R.drawable.baseline_anchor_24));
-        categoryItemList.add(new CategoryPOJO("Vestuário", R.drawable.baseline_anchor_24));
-        categoryItemList.add(new CategoryPOJO("Acessórios", R.drawable.baseline_anchor_24));
+        categoryItemList.add(new CategoryPOJO("Calçados"));
+        categoryItemList.add(new CategoryPOJO("Vestuário"));
+        categoryItemList.add(new CategoryPOJO("Acessórios"));
 
         CategoryAdapter adapter = new CategoryAdapter(categoryItemList);
         recyclerView.setAdapter(adapter);

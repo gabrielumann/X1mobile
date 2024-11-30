@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="124dp"
+        android:layout_height="wrap_content"
         android:background="#FFFFFF"
         android:orientation="vertical">
 
@@ -19,29 +19,14 @@
             android:contentDescription="Logo"
             android:src="@drawable/logox1" />
 
-        <EditText
-            android:id="@+id/search_bar"
-            android:layout_width="match_parent"
-            android:layout_height="46dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/edittext_rounded_background"
-            android:drawablePadding="8dp"
-            android:hint="Pesquisar"
-            android:paddingStart="20dp"
-            android:paddingEnd="8dp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="609dp"
+        android:layout_height="match_parent"
         android:background="#414345"
         android:orientation="vertical">
-
-        <!-- RecyclerView para mostrar os cartões de produtos -->
-
-        <!-- Botão Ver Mais -->
 
         <TextView
             android:id="@+id/title_destaques"
@@ -57,7 +42,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_products"
             android:layout_width="match_parent"
-            android:layout_height="567dp"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="8dp" />
 
