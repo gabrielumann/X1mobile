@@ -1,8 +1,10 @@
 package com.example.myapplication.data;
 import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 import java.util.List;
 
-public class Product {
+public class Product implements Serializable {
     private int id;
     private String name;
     @SerializedName("price_brl")

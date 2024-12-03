@@ -11,4 +11,6 @@ public interface Api {
     String BASE_URL_API = "http://10.0.2.2/X1-Clothes/api/";
     @GET("products")
     Call<ApiResponse<List<Product>>> getProducts();
+//    @GET("{pokeId}")
+//    Call<Pokemon> getPoke(@Path("pokeId") int pokeId);
 }

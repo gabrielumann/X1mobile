@@ -6,12 +6,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.data.Product;
 import com.example.myapplication.data.base.Api;
+import com.example.myapplication.ui.product.ProductDetailFragment;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -35,14 +40,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product product = products.get(position);
         holder.productName.setText(product.getName());
-        if (product.getProductImages() != null && !product.getProductImages().isEmpty()) {
-
-        }
         String imageUrl = Api.BASE_URL + product.getProductImages().get(0).getImage();
         Picasso.get().load(imageUrl).into(holder.productImage);
 
-        holder.buttonBuy.setOnClickListener(v -> {
-
+        holder.buttonBuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), "teste" + product.getId(), Toast.LENGTH_SHORT).show();
+                FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
+                ProductDetailFragment detailFragment = ProductDetailFragment.newInstance(product);
+                fragmentTransaction.replace(R.id.container, detailFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
         });
     }
 
@@ -53,13 +63,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     static class ProductViewHolder extends RecyclerView.ViewHolder {
         TextView productName;
-        Button buttonBuy;
         ImageView productImage;
+        Button buttonBuy;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
-            productName = itemView.findViewById(R.id.product_name);
             buttonBuy = itemView.findViewById(R.id.button_buy);
+            productName = itemView.findViewById(R.id.product_name);
             productImage = itemView.findViewById(R.id.product_image);
         }
     }
