@@ -9,22 +9,23 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="249dp"
         android:layout_weight="1"
         android:background="#FFFFFF"
         android:padding="1dp"
         android:layout_gravity="center">
 
-        <View
-            android:layout_width="361dp"
-            android:layout_height="262dp"
-            android:background="#666666" />
+        <ImageView
+            android:id="@+id/product_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
     </FrameLayout>
 
     <TextView
         android:id="@+id/product_name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="Nome"

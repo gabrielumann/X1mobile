@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.category;
+package com.example.myapplication.model.category;
 
 public class CategoryPOJO {
     private String title;

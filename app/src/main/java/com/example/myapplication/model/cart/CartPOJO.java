@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.cart;
+package com.example.myapplication.model.cart;
 
 public class CartPOJO{
     private String productName;
