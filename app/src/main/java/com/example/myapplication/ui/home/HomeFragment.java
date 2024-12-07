@@ -29,7 +29,6 @@ public class HomeFragment extends Fragment {
         View root = binding.getRoot();
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         homeViewModel.getProducts().observe(getViewLifecycleOwner(), this::setRecyclerView);
-
         homeViewModel.getErrorMessage().observe(getViewLifecycleOwner(), this::showErrorMessage);
 
         return root;
@@ -41,7 +40,7 @@ public class HomeFragment extends Fragment {
         binding = null;
     }
 
-    public void setRecyclerView(List<Product> products){
+    public void setRecyclerView(List<Product> products) {
         RecyclerView recyclerView = binding.recyclerViewProducts;
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(gridLayoutManager);

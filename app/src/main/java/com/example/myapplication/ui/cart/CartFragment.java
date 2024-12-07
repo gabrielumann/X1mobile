@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -11,11 +12,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication.R;
+import com.example.myapplication.data.Product;
 import com.example.myapplication.databinding.FragmentCartBinding;
-import com.example.myapplication.model.cart.CartPOJO;
+import com.example.myapplication.model.cart.Cart;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -31,16 +31,12 @@ public class CartFragment extends Fragment {
         binding = FragmentCartBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        RecyclerView recyclerView = binding.recyclerViewCart;
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        List<Product> cartProducts = Cart.getInstance().getCartItems();
+        if (cartProducts != null){
+            setRecyclerView(cartProducts);
+            changeProductsVisibility(cartProducts.size());
+        }
 
-
-        List<CartPOJO> cartItems = new ArrayList<>();
-        cartItems.add(new CartPOJO("CORTEIZ - Jacket", "R$ 399,99", R.drawable.ic_home_black_24dp));
-        cartItems.add(new CartPOJO("Other Jacket", "R$ 429,99", R.drawable.ic_notifications_black_24dp));
-
-        CartAdapter adapter = new CartAdapter(cartItems);
-        recyclerView.setAdapter(adapter);
         return root;
     }
 
@@ -48,5 +44,26 @@ public class CartFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    public void setRecyclerView(List<Product> products){
+        RecyclerView recyclerView = binding.recyclerViewCart;
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        CartAdapter adapter = new CartAdapter(products);
+        recyclerView.setAdapter(adapter);
+        changeProductsVisibility(products.size());
+    }
+
+    private void changeProductsVisibility(int cartSize){
+        TextView emptyCartMessage = binding.emptyCartMessage;
+        RecyclerView recyclerView = binding.recyclerViewCart;
+
+        if (cartSize == 0) {
+            emptyCartMessage.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        } else {
+            emptyCartMessage.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+        }
     }
 }

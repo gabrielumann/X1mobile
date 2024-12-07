@@ -1,11 +1,13 @@
 package com.example.myapplication.ui.product;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -14,6 +16,7 @@ import com.example.myapplication.data.Product;
 import com.example.myapplication.data.ProductImage;
 import com.example.myapplication.data.base.Api;
 import com.example.myapplication.databinding.FragmentProductDetailBinding;
+import com.example.myapplication.model.cart.Cart;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -42,8 +45,16 @@ public class ProductDetailFragment extends Fragment {
                 displayProductDetails(product);
                 setupViewPager(product.getProductImages());
                 setupArrowButtons(product.getProductImages());
+                addOnCart(product);
             }
         }
+
+        binding.arrowBackHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requireActivity().getSupportFragmentManager().popBackStack();
+            }
+        });
 
         return root;
     }
@@ -81,7 +92,15 @@ public class ProductDetailFragment extends Fragment {
             }
         });
     }
-
+    private void addOnCart(Product product){
+        binding.finishBuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Cart.getInstance().addToCart(product);
+                Toast.makeText(getContext(), "Produto adicionado ao carrinho!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     @Override
     public void onDestroyView() {
         super.onDestroyView();

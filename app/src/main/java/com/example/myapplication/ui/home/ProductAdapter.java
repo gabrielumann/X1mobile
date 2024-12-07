@@ -46,10 +46,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.buttonBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), "teste" + product.getId(), Toast.LENGTH_SHORT).show();
                 FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
                 ProductDetailFragment detailFragment = ProductDetailFragment.newInstance(product);
-                fragmentTransaction.replace(R.id.container, detailFragment);
+                fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, detailFragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }

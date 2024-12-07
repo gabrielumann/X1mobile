@@ -10,15 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
-import com.example.myapplication.model.cart.CartPOJO;
+import com.example.myapplication.data.Product;
+import com.example.myapplication.data.base.Api;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
 
-    private List<CartPOJO> cartItems;
+    private List<Product> cartItems;
 
-    public CartAdapter(List<CartPOJO> cartItems) {
+    public CartAdapter(List<Product> cartItems) {
         this.cartItems = cartItems;
     }
 
@@ -32,10 +34,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
-        CartPOJO item = cartItems.get(position);
-        holder.productName.setText(item.getProductName());
-        holder.price.setText(item.getPrice());
-        holder.productImage.setImageResource(item.getImageResource());
+        Product item = cartItems.get(position);
+        holder.productName.setText(item.getName());
+        holder.price.setText(String.format("$%.2f", item.getPrice()));
+        String imageUrl = Api.BASE_URL + item.getProductImages().get(0).getImage();
+        Picasso.get().load(imageUrl).into(holder.productImage);
+
     }
 
     @Override
