@@ -32,10 +32,9 @@ public class CartFragment extends Fragment {
         View root = binding.getRoot();
 
         List<Product> cartProducts = Cart.getInstance().getCartItems();
-        if (cartProducts != null){
-            setRecyclerView(cartProducts);
-            changeProductsVisibility(cartProducts.size());
-        }
+        setRecyclerView(cartProducts);
+        changeProductsVisibility(cartProducts.size());
+
 
         return root;
     }
@@ -56,14 +55,11 @@ public class CartFragment extends Fragment {
 
     private void changeProductsVisibility(int cartSize){
         TextView emptyCartMessage = binding.emptyCartMessage;
-        RecyclerView recyclerView = binding.recyclerViewCart;
 
         if (cartSize == 0) {
             emptyCartMessage.setVisibility(View.VISIBLE);
-            recyclerView.setVisibility(View.GONE);
         } else {
             emptyCartMessage.setVisibility(View.GONE);
-            recyclerView.setVisibility(View.VISIBLE);
         }
     }
 }
