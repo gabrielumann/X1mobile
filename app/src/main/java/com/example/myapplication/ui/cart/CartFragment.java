@@ -45,7 +45,7 @@ public class CartFragment extends Fragment {
         binding = null;
     }
 
-    public void setRecyclerView(List<Product> products){
+    private void setRecyclerView(List<Product> products){
         RecyclerView recyclerView = binding.recyclerViewCart;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         CartAdapter adapter = new CartAdapter(products);

@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.example.myapplication.data.Product;
 import com.example.myapplication.data.ProductImage;
@@ -52,12 +54,14 @@ public class ProductDetailFragment extends Fragment {
         binding.arrowBackHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                requireActivity().getSupportFragmentManager().popBackStack();
+                NavController navController = Navigation.findNavController(v);
+                navController.popBackStack();
             }
         });
-
         return root;
     }
+
+
     private void displayProductDetails(Product product) {
         TextView tvName = binding.productName;
         TextView tvBrand = binding.productBrand;
@@ -67,10 +71,12 @@ public class ProductDetailFragment extends Fragment {
         tvBrand.setText(product.getBrand());
         tvPrice.setText(String.format(Locale.getDefault(), "$%.2f", product.getPrice()));
     }
+
     private void setupViewPager(List<ProductImage> productImages) {
         ImageAdapter imageAdapter = new ImageAdapter(productImages);
         binding.viewPager.setAdapter(imageAdapter);
     }
+
     private void setupArrowButtons(final List<ProductImage> productImages) {
         binding.leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +98,7 @@ public class ProductDetailFragment extends Fragment {
             }
         });
     }
+
     private void addOnCart(Product product){
         binding.finishBuy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +108,7 @@ public class ProductDetailFragment extends Fragment {
             }
         });
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

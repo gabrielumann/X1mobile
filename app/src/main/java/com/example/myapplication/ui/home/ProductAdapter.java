@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.home;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
@@ -46,11 +49,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.buttonBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
-                ProductDetailFragment detailFragment = ProductDetailFragment.newInstance(product);
-                fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, detailFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                // Criar o Bundle com os dados do produto
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("product", product); // Adiciona o produto ao bundle
+
+                // Usando o NavController para navegar para o ProductDetailFragment
+                NavController navController = Navigation.findNavController(v);
+                navController.navigate(R.id.productDetailFragment, bundle);
             }
         });
     }
