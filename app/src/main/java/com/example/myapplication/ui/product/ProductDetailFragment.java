@@ -1,5 +1,7 @@
 package com.example.myapplication.ui.product;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -108,6 +110,7 @@ public class ProductDetailFragment extends Fragment {
             }
         });
     }
+
 
     @Override
     public void onDestroyView() {

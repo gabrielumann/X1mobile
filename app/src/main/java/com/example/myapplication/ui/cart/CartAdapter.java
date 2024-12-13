@@ -15,6 +15,7 @@ import com.example.myapplication.data.base.Api;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Locale;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
 
@@ -36,15 +37,26 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
         Product item = cartItems.get(position);
         holder.productName.setText(item.getName());
-        holder.price.setText(String.format("$%.2f", item.getPrice()));
+
+        String formattedPrice = String.format(Locale.forLanguageTag("pt-BR"), "R$ %.2f", item.getPrice());
+        holder.price.setText(formattedPrice);
+
         String imageUrl = Api.BASE_URL + item.getProductImages().get(0).getImage();
         Picasso.get().load(imageUrl).into(holder.productImage);
 
     }
 
+
     @Override
     public int getItemCount() {
         return cartItems.size();
+    }
+    public double calculateTotal() {
+        double total = 0;
+        for (Product product : cartItems) {
+            total += product.getPrice();
+        }
+        return total;
     }
 
     public static class CartViewHolder extends RecyclerView.ViewHolder {

@@ -49,11 +49,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.buttonBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Criar o Bundle com os dados do produto
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("product", product); // Adiciona o produto ao bundle
+                bundle.putSerializable("product", product);
 
-                // Usando o NavController para navegar para o ProductDetailFragment
                 NavController navController = Navigation.findNavController(v);
                 navController.navigate(R.id.productDetailFragment, bundle);
             }

@@ -22,11 +22,19 @@
         android:name="com.example.myapplication.ui.cart.CartFragment"
         android:label="@string/title_cart"
         tools:layout="@layout/fragment_cart" />
+
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.example.myapplication.ui.login.LoginFragment"
+        android:name="com.example.myapplication.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/navigation_login"
+        android:name="com.example.myapplication.ui.login.LoginFragment"
+        android:label="@string/title_login"
         tools:layout="@layout/fragment_login" />
+
     <fragment
         android:id="@+id/productDetailFragment"
         android:name="com.example.myapplication.ui.product.ProductDetailFragment"

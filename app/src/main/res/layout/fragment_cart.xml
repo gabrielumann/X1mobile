@@ -59,7 +59,7 @@
                         android:textSize="14sp" />
 
                     <TextView
-                        android:id="@+id/txt_freight"
+                        android:id="@+id/txt_shipping"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="R$ 30,00"

@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class ApiResponse<T> {
     private String status;
+    private String message;
     private T data;
 
     public boolean isError() {
@@ -20,5 +21,12 @@ public class ApiResponse<T> {
     }
     public void setData(T data) {
         this.data = data;
+    }
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

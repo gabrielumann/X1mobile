@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.cart;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.example.myapplication.databinding.FragmentCartBinding;
 import com.example.myapplication.model.cart.Cart;
 
 import java.util.List;
+import java.util.Locale;
 
 
 public class CartFragment extends Fragment {
@@ -33,8 +35,7 @@ public class CartFragment extends Fragment {
 
         List<Product> cartProducts = Cart.getInstance().getCartItems();
         setRecyclerView(cartProducts);
-        changeProductsVisibility(cartProducts.size());
-
+        changeTextVisibility(cartProducts.size());
 
         return root;
     }
@@ -45,15 +46,38 @@ public class CartFragment extends Fragment {
         binding = null;
     }
 
+
     private void setRecyclerView(List<Product> products){
         RecyclerView recyclerView = binding.recyclerViewCart;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         CartAdapter adapter = new CartAdapter(products);
         recyclerView.setAdapter(adapter);
-        changeProductsVisibility(products.size());
-    }
+        updateTotalPrice(adapter);
+        changeTextVisibility(products.size());
 
-    private void changeProductsVisibility(int cartSize){
+    }
+    private void updateTotalPrice(CartAdapter adapter) {
+        double total = adapter.calculateTotal();
+        double shipping = 0;
+        if(total > 1000){
+            alterShipping(shipping);
+        }else{
+            shipping = 30;
+        }
+        
+        TextView Tvtotal = binding.txtTotal;
+        String formattedTotal = String.format(Locale.forLanguageTag("pt-BR"), "R$ %.2f", total + shipping);
+        Tvtotal.setText(formattedTotal);
+    }
+    
+    private void alterShipping( double shipping){
+        shipping = 0;
+        TextView tvShipping = binding.txtShipping;
+        tvShipping.setText(String.format(Locale.forLanguageTag("pt-BR"), "R$ %.2f", shipping));
+        
+        
+    }
+    private void changeTextVisibility(int cartSize){
         TextView emptyCartMessage = binding.emptyCartMessage;
 
         if (cartSize == 0) {
