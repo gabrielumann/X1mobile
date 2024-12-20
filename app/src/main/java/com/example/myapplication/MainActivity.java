@@ -22,17 +22,15 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        BottomNavigationView navView = findViewById(R.id.nav_view);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_category, R.id.navigation_cart, R.id.navigation_login)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-        navView.setOnItemSelectedListener(item -> {
+        binding.navView.setOnItemSelectedListener(item -> {
             navController.popBackStack(R.id.navigation_home, false);
             return NavigationUI.onNavDestinationSelected(item, navController);
         });
     }
-
 }
