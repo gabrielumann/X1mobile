@@ -30,14 +30,6 @@ import java.util.Locale;
 public class ProductDetailFragment extends Fragment {
     private static final String ARG_PRODUCT = "product";
     private FragmentProductDetailBinding binding;
-    public static ProductDetailFragment newInstance(Product product) {
-        ProductDetailFragment fragment = new ProductDetailFragment();
-        Bundle args = new Bundle();
-        args.putSerializable(ARG_PRODUCT, product);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentProductDetailBinding.inflate(inflater, container, false);

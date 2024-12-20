@@ -65,6 +65,12 @@ public class LoginFragment extends Fragment {
 
         loginViewModel.getUserLiveData().observe(getViewLifecycleOwner(), user -> {
             Toast.makeText(getContext(), "Bem-vindo " + user.getFirstName(), Toast.LENGTH_SHORT).show();
+
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("user", user);
+
+            NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
+            navController.navigate(R.id.navigation_profile, bundle);
         });
 
         loginViewModel.getErrorMessage().observe(getViewLifecycleOwner(), errorMessage -> {
