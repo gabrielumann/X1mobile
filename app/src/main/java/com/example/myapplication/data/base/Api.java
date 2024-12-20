@@ -23,4 +23,15 @@ public interface Api {
             @Field("email") String email,
             @Field("password") String password
     );
+
+    @FormUrlEncoded
+    @POST("users")
+    Call<ApiResponse<User>> registerWithPost(
+            @Field("first_name") String firstName,
+            @Field("last_name") String lastName,
+            @Field("cpf") String cpf,
+            @Field("email") String email,
+            @Field("password") String password,
+            @Field("passwordConfirmed") String passwordConfirmed
+    );
 }

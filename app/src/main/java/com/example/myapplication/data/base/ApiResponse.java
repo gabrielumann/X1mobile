@@ -1,8 +1,11 @@
 package com.example.myapplication.data.base;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Objects;
 
 public class ApiResponse<T> {
+    @SerializedName("type")
     private String status;
     private String message;
     private T data;

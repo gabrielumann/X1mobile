@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.login;
+package com.example.myapplication.ui.register;
 
 import android.util.Log;
 
@@ -14,7 +14,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginViewModel extends ViewModel {
+public class RegisterViewModel extends ViewModel {
     private final MutableLiveData<User> user = new MutableLiveData<>();
     private final MutableLiveData<String> error = new MutableLiveData<>();
 
@@ -25,18 +25,18 @@ public class LoginViewModel extends ViewModel {
         return error;
     }
 
-    public void login(String email, String password) {
-        Call<ApiResponse<User>> call = RetrofitClient.getInstance().getMyApi().loginWithPost(email, password);
+    public void register(String firstName, String lastName, String cpf, String email, String password, String passwordConfirmed) {
+        Call<ApiResponse<User>> call = RetrofitClient.getInstance().getMyApi()
+                .registerWithPost(firstName, lastName, cpf , email, password ,passwordConfirmed);
 
         call.enqueue(new Callback<ApiResponse<User>>() {
             @Override
             public void onResponse(Call<ApiResponse<User>> call, Response<ApiResponse<User>> response) {
                 ApiResponse<User> apiResponse = response.body();
                 if (response.isSuccessful() && apiResponse != null) {
-//                    Log.e("TEste", "teste no if");
                     user.postValue(apiResponse.getData());
                 } else {
-                    error.postValue("Senha ou Email Inválidos!");
+                    error.postValue(response.body() != null ? response.body().getMessage() : "Erro ao registrar!");
                 }
             }
 
@@ -47,4 +47,5 @@ public class LoginViewModel extends ViewModel {
             }
         });
     }
+
 }
